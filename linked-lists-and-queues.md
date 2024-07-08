@@ -292,3 +292,60 @@ A queue is an abstract data type (ADT) that follows the First In, First Out (FIF
 
     2. Performance Advantage:
         • Both `addToTail` and `removeFromHead` operations are O(1), making the linked list implementation more efficient for large datasets
+
+
+* Performance Testing
+
+    1. Testing Enqueue and Dequeue Times:
+
+        • Array Implementation:
+        ```js
+        // example with n = 100000
+        q = new Queue();
+        n = 100000;
+
+        enqueueStartTime = Date.now();
+        for (let i = 0; i < n; i++) {
+            q.enqueue(i);
+        }
+        enqueueEndTime = Date.now();
+
+        dequeueStartTime = Date.now();
+        for (let i = 0; i < n; i++) {
+            q.dequeue();
+        }
+        dequeueEndTime = Date.now();
+
+        console.log(`Enqueue time: ${enqueueEndTime - enqueueStartTime}ms`);
+        console.log(`Dequeue time: ${dequeueEndTime - dequeueStartTime}ms`);
+        ```
+
+        • Expected Results:
+            - Linked List: Enqueue ~20ms, Dequeue ~5ms
+            - Array: Enqueue -7ms, Dequeue - 877ms
+
+    2. Comparative Testing:
+        • For smaller values of n (e.g. n = 1000), the performance difference is negligible due to the high speed of arrays for small operations
+
+* Tradeoffs
+
+    1. Array vs. Linked List:
+
+        • Array:
+            - Simpler, easier to read and maintain
+            - Efficient for small datasets
+
+        • Linked list:
+            - More complex but necessary for large datasets to avoid performance bottlenecks
+
+    2. Decision Making:
+
+        • Use arrays for simplicity and ease of maintenance for smaller datasets
+        • Use linked lists for large datasets where performance is critical
+
+* Summary
+    • Queue: FIFO data structure with key operations `enqueue()` and `dequeue()`
+    • Array Implementation: Simple but inefficient for large datasets due to O(n) `dequeue()` operations
+    • Linked List Implementation: Efficient O(1) operations for both `enqueue()` and `dequeue()`, suitable for large datasets
+    • Performance Testing: Validates the efficiency of linked list over array for large values of n
+    • Tradeoffs: Balance between simplicity (array) and performance (linked list) based on the use case requirements
