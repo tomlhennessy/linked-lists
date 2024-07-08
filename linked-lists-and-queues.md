@@ -221,3 +221,74 @@ While arrays are typically preferred for their simplicity and performance in sce
     • Understand Constraints: Always consider problem constraints and use cases before optimising
 
 These principles help to evaluate and optimise data structures like linked lists effectively
+
+
+# Queues
+
+A queue is an abstract data type (ADT) that follows the First In, First Out (FIFO) principle. It is similar to waiting in a line: the first person in the line is the first person to be served.
+
+* Key Concepts
+
+    1. FIFO (First In, First Out):
+        • The first element added to the queue will be the first one to be removed
+        • Example: Customer service apps, printer queues
+
+    2. Key Operations:
+        • `enqueue(value)`: Adds an element to the end of the queue
+        • `dequeue()`: Removes and returns the element from the front of the queue
+
+
+* Implementing a Queue with an Array
+
+    1. Array-Based Queue:
+        • Uses an array to store elements
+        • `enqueue(value)`: Adds the element to the end using `push()`
+        • `dequeue()`: Removes the element from the front using `shift()`
+
+        Example:
+        ```js
+        class Queue {
+            constructor() {
+                this.data = [];
+            }
+            enqueue(value) {
+                this.data.push(value);
+            }
+            dequeue() {
+                return this.data.shift();
+            }
+        }
+        ```
+
+    2. Performance Issue:
+        • The `shift()` method in arrays requires shifting all other elements, making `dequeue()` an O(n) operation
+
+
+* Implementing a Queue with a Linked List
+
+    1. Linked List-Based Queue:
+        • Utilises a linked list to store elements
+        • `enqueue(value)`: Adds the element to the tail of the list
+        • `dequeue()`: Removed the element from the head of the list
+
+        Example:
+        ```js
+        const LinkedList = require('./linked-list.js');
+
+        class Queue {
+            constructor() {
+                this.linkedList = new LinkedList();
+            }
+            enqueue(value) {
+                this.linkedList.addToTail(value);
+            }
+            dequeue() {
+                const value = this.linkedList.head.value;
+                this.linkedList.removeFromHead();
+                return value;
+            }
+        }
+        ```
+
+    2. Performance Advantage:
+        • Both `addToTail` and `removeFromHead` operations are O(1), making the linked list implementation more efficient for large datasets
